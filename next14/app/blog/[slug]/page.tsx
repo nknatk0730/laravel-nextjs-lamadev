@@ -16,6 +16,20 @@ import { format } from "date-fns";
 //   return res.json();
 // }
 
+export const generateMetadata = async ({
+  params
+}: {
+  params: Promise<{ slug: string }>
+}) => {
+  const { slug } = await params;
+  const post = await getPost(slug);
+
+  return {
+    title: post.title,
+    description: post.description,
+  }
+}
+
 export default async function page({
   params
 }: {
